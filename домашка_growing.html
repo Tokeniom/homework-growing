@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Домашнее задание · Growing × moon+</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f5f6f8;
+    --surface: #ffffff;
+    --surface2: #f0f2f5;
+    --border: rgba(0,0,0,0.08);
+    --border2: rgba(0,0,0,0.14);
+    --text: #111418;
+    --text2: #4a5568;
+    --text3: #8a96a3;
+    --teal: #0F6E56;
+    --teal-light: #E1F5EE;
+    --blue: #185FA5;
+    --blue-light: #E6F1FB;
+    --amber: #854F0B;
+    --amber-light: #FAEEDA;
+    --coral: #993C1D;
+    --coral-light: #FAECE7;
+    --navy: #1B2E4B;
+    --accent: #185FA5;
+    --radius: 12px;
+    --radius-sm: 8px;
+    --shadow: 0 1px 3px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.04);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Manrope', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    padding: 2rem 1rem 4rem;
+    line-height: 1.6;
+  }
+
+  .page {
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  /* Header */
+  .header {
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .header-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.75rem;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .badge {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    border-radius: 20px;
+    background: var(--blue-light);
+    color: var(--blue);
+  }
+  .date {
+    font-size: 12px;
+    color: var(--text3);
+  }
+  .header h1 {
+    font-size: 26px;
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1.25;
+    margin-bottom: 4px;
+  }
+  .header p {
+    font-size: 14px;
+    color: var(--text2);
+  }
+
+  /* Cards */
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 1.25rem;
+    box-shadow: var(--shadow);
+  }
+
+  .card-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    margin-bottom: 14px;
+  }
+
+  .num {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 600;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .n1 { background: var(--teal-light); color: var(--teal); }
+  .n2 { background: var(--blue-light); color: var(--blue); }
+  .n3 { background: var(--amber-light); color: var(--amber); }
+
+  .card-title { font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 2px; }
+  .card-desc { font-size: 13px; color: var(--text2); line-height: 1.5; }
+
+  /* Steps */
+  .steps { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+  .step {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 13.5px;
+    color: var(--text2);
+    line-height: 1.55;
+    padding: 8px 12px;
+    background: var(--surface2);
+    border-radius: var(--radius-sm);
+  }
+  .step-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--border2);
+    flex-shrink: 0;
+    margin-top: 8px;
+  }
+  .step strong { font-weight: 600; color: var(--text); }
+
+  /* QR block */
+  .qr-block {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-top: 12px;
+    padding: 10px 14px;
+    background: var(--blue-light);
+    border-radius: var(--radius-sm);
+    border: 1px solid rgba(24,95,165,0.12);
+  }
+  .qr-icon {
+    width: 44px;
+    height: 44px;
+    flex-shrink: 0;
+  }
+  .qr-text { font-size: 12.5px; color: var(--blue); line-height: 1.5; }
+  .qr-text strong { font-weight: 600; display: block; margin-bottom: 2px; color: var(--navy); }
+
+  /* Portfolio model */
+  .portfolio-model {
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    margin: 14px 0 6px;
+  }
+  .pm-header {
+    background: var(--navy);
+    padding: 9px 14px;
+    font-size: 11.5px;
+    font-weight: 600;
+    color: #9BB5D0;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  .pm-row {
+    display: grid;
+    grid-template-columns: 60px 1fr auto;
+    align-items: start;
+    gap: 12px;
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--border);
+  }
+  .pm-row:last-child { border-bottom: none; }
+  .pm-pct { font-size: 22px; font-weight: 600; line-height: 1; padding-top: 2px; }
+  .pm-pct-d { color: var(--teal); }
+  .pm-pct-g { color: var(--blue); }
+  .pm-pct-a { color: #D85A30; }
+  .pm-name { font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 3px; }
+  .pm-detail { font-size: 11.5px; color: var(--text2); line-height: 1.45; }
+  .pm-right { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; padding-top: 2px; }
+  .pm-apr {
+    font-size: 12px; font-weight: 600;
+    padding: 3px 9px; border-radius: 20px; white-space: nowrap;
+  }
+  .pm-apr-d { background: var(--teal-light); color: var(--teal); }
+  .pm-apr-g { background: var(--blue-light); color: var(--blue); }
+  .pm-apr-a { background: var(--coral-light); color: var(--coral); }
+  .pm-basis { font-size: 10.5px; color: var(--text3); }
+
+  /* Weighted */
+  .weighted-box {
+    background: var(--surface2);
+    border-radius: var(--radius-sm);
+    padding: 10px 14px;
+    margin: 10px 0 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    border: 1px solid var(--border);
+  }
+  .weighted-label { font-size: 12px; color: var(--text2); }
+  .weighted-formula {
+    font-size: 12px;
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--text3);
+    background: rgba(0,0,0,0.04);
+    padding: 2px 8px;
+    border-radius: 4px;
+  }
+  .weighted-result { font-size: 15px; font-weight: 600; color: var(--blue); margin-left: auto; }
+
+  /* Calculator */
+  .calc-box {
+    background: var(--surface2);
+    border-radius: var(--radius-sm);
+    padding: 14px 16px;
+    margin-top: 12px;
+    border: 1px solid var(--border);
+  }
+  .calc-label {
+    font-size: 11px; font-weight: 600; letter-spacing: 0.06em;
+    text-transform: uppercase; color: var(--text3); margin-bottom: 12px;
+  }
+  .calc-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 14px;
+  }
+  .calc-field label {
+    display: block; font-size: 11.5px;
+    color: var(--text2); margin-bottom: 5px; font-weight: 500;
+  }
+  .calc-field input {
+    width: 100%; padding: 8px 10px; font-size: 13.5px;
+    border: 1px solid var(--border2); border-radius: var(--radius-sm);
+    background: var(--surface); color: var(--text);
+    font-family: 'Manrope', sans-serif;
+    transition: border-color 0.15s;
+    outline: none;
+  }
+  .calc-field input:focus { border-color: var(--blue); }
+
+  .calc-result { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+  .calc-metric {
+    background: var(--surface);
+    border-radius: var(--radius-sm);
+    padding: 10px 12px;
+    border: 1px solid var(--border);
+  }
+  .calc-metric-label { font-size: 11px; color: var(--text3); margin-bottom: 4px; font-weight: 500; }
+  .calc-metric-value { font-size: 17px; font-weight: 600; color: var(--text); }
+  .calc-metric-value.accent { color: var(--blue); }
+  .calc-hint {
+    font-size: 12px; color: var(--text2);
+    margin-top: 10px; line-height: 1.6;
+    padding: 8px 12px;
+    background: rgba(24,95,165,0.05);
+    border-radius: var(--radius-sm);
+    border-left: 3px solid var(--blue);
+  }
+
+  /* Footer */
+  .footer-cta {
+    display: flex; align-items: center; gap: 12px;
+    background: var(--navy); border-radius: var(--radius);
+    padding: 14px 18px; margin-bottom: 1rem; color: #CBD8EA;
+    font-size: 13.5px; line-height: 1.5;
+  }
+  .footer-cta strong { color: #fff; font-weight: 600; }
+  .footer-cta-icon { font-size: 20px; flex-shrink: 0; }
+  .footer-meta {
+    display: flex; justify-content: space-between;
+    font-size: 11.5px; color: var(--text3);
+  }
+
+  @media (max-width: 520px) {
+    body { padding: 1rem 0.75rem 3rem; }
+    .header h1 { font-size: 21px; }
+    .calc-grid { grid-template-columns: 1fr; }
+    .calc-result { grid-template-columns: 1fr; }
+    .pm-row { grid-template-columns: 52px 1fr; }
+    .pm-right { display: none; }
+    .weighted-formula { display: none; }
+    .weighted-result { margin-left: 0; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="header-top">
+      <span class="badge">Домашнее задание · Growing × moon+</span>
+      <span class="date">25 марта 2026</span>
+    </div>
+    <h1>Практика после лекции</h1>
+    <p>Инвестиции: универсальные принципы и новые возможности · Надольный Тарас</p>
+  </div>
+
+  <!-- Задание 1 -->
+  <div class="card">
+    <div class="card-header">
+      <div class="num n1">1</div>
+      <div>
+        <p class="card-title">Заполните таблицу управления благосостоянием</p>
+        <p class="card-desc">Системный подход — слайд 4 лекции. Шаблон таблицы доступен по QR ниже</p>
+      </div>
+    </div>
+    <ul class="steps">
+      <li class="step">
+        <span class="step-dot"></span>
+        <span><strong>Блок 01 — расходы:</strong> разбейте на обязательные (50%), накопления (20%), пенсия (10%). Что остаётся свободным?</span>
+      </li>
+      <li class="step">
+        <span class="step-dot"></span>
+        <span><strong>Блок 02 — подушка:</strong> покрывает ли ваш резерв 3–6 месяцев расходов? Если нет — на сколько не хватает?</span>
+      </li>
+      <li class="step">
+        <span class="step-dot"></span>
+        <span><strong>Блок 03 — цели:</strong> запишите 1–3 финансовые цели. Одна из них — желаемый пенсионный капитал с конкретной суммой и сроком.</span>
+      </li>
+    </ul>
+    <div class="qr-block">
+      <svg class="qr-icon" viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg">
+        <rect width="44" height="44" rx="8" fill="#E6F1FB"/>
+        <rect x="7" y="7" width="13" height="13" rx="2" fill="none" stroke="#185FA5" stroke-width="1.8"/>
+        <rect x="10" y="10" width="7" height="7" rx="1" fill="#185FA5"/>
+        <rect x="24" y="7" width="13" height="13" rx="2" fill="none" stroke="#185FA5" stroke-width="1.8"/>
+        <rect x="27" y="10" width="7" height="7" rx="1" fill="#185FA5"/>
+        <rect x="7" y="24" width="13" height="13" rx="2" fill="none" stroke="#185FA5" stroke-width="1.8"/>
+        <rect x="10" y="27" width="7" height="7" rx="1" fill="#185FA5"/>
+        <rect x="24" y="24" width="4" height="4" rx="1" fill="#185FA5"/>
+        <rect x="30" y="24" width="4" height="4" rx="1" fill="#185FA5"/>
+        <rect x="24" y="30" width="4" height="4" rx="1" fill="#185FA5"/>
+        <rect x="30" y="30" width="4" height="4" rx="1" fill="#185FA5"/>
+      </svg>
+      <div class="qr-text">
+        <strong>Таблица управления благосостоянием</strong>
+        Отсканируйте QR со слайда 4 лекции или перейдите по ссылке из презентации Growing
+      </div>
+    </div>
+  </div>
+
+  <!-- Задание 2 -->
+  <div class="card">
+    <div class="card-header">
+      <div class="num n2">2</div>
+      <div>
+        <p class="card-title">Составьте свой цифровой портфель из трёх слоёв</p>
+        <p class="card-desc">Выберите конкретные инструменты, обоснуйте выбор и рассчитайте взвешенную доходность</p>
+      </div>
+    </div>
+
+    <div class="portfolio-model">
+      <div class="pm-header">Модель цифрового портфеля 2026 — слайд 15</div>
+      <div class="pm-row">
+        <span class="pm-pct pm-pct-d">60%</span>
+        <div>
+          <p class="pm-name">Защитный — сохранение капитала</p>
+          <p class="pm-detail">Стейблкоины в стейкинге: DefiLlama / OKX / Fluid.io<br>
+          USDC/USDT стейкинг: стабильные 3–5% APR в 2023–2025 гг. Минимальный риск, высокая ликвидность</p>
+        </div>
+        <div class="pm-right">
+          <span class="pm-apr pm-apr-d">3–5% APR</span>
+          <span class="pm-basis">стейблкоины</span>
+        </div>
+      </div>
+      <div class="pm-row">
+        <span class="pm-pct pm-pct-g">30%</span>
+        <div>
+          <p class="pm-name">Ростовый — умеренный рост</p>
+          <p class="pm-detail">BTC + ETH + дефляционные токены (BNB, XRP, ADA)<br>
+          Консервативная оценка на горизонте 5+ лет с учётом просадок и волатильности рынка</p>
+        </div>
+        <div class="pm-right">
+          <span class="pm-apr pm-apr-g">15–20% / год</span>
+          <span class="pm-basis">CAGR, 5+ лет</span>
+        </div>
+      </div>
+      <div class="pm-row">
+        <span class="pm-pct pm-pct-a">10%</span>
+        <div>
+          <p class="pm-name">Агрессивный — высокая доходность</p>
+          <p class="pm-detail">Launchpad (MEXC, BYBIT) + Drop Hunting + Presale на DX app<br>
+          Оценка с учётом средней выживаемости проектов и частичных потерь. Высокий риск</p>
+        </div>
+        <div class="pm-right">
+          <span class="pm-apr pm-apr-a">35–40% / год</span>
+          <span class="pm-basis">с учётом рисков</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="weighted-box">
+      <span class="weighted-label">Пример взвешенной доходности:</span>
+      <span class="weighted-formula">0.6×4% + 0.3×17% + 0.1×37%</span>
+      <span class="weighted-result">= 10.6% / год</span>
+    </div>
+
+    <ul class="steps" style="margin-top:12px;">
+      <li class="step">
+        <span class="step-dot"></span>
+        <span>Для каждого слоя напишите 2–3 предложения: <em>«Я выбрал X, потому что...»</em> — аргументируйте через принципы лекции: время, ликвидность, риск-контроль</span>
+      </li>
+      <li class="step">
+        <span class="step-dot"></span>
+        <span>Рассчитайте свою взвешенную доходность по формуле выше и внесите её в калькулятор задания 3</span>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Задание 3 -->
+  <div class="card">
+    <div class="card-header">
+      <div class="num n3">3</div>
+      <div>
+        <p class="card-title">Рассчитайте необходимую сумму инвестиций</p>
+        <p class="card-desc">Используйте взвешенную ставку из задания 2 и пенсионную цель из задания 1</p>
+      </div>
+    </div>
+
+    <div class="calc-box">
+      <div class="calc-label">Калькулятор пенсионного капитала</div>
+      <div class="calc-grid">
+        <div class="calc-field">
+          <label>Целевой капитал ($)</label>
+          <input type="number" id="target" value="200000" min="10000" step="10000">
+        </div>
+        <div class="calc-field">
+          <label>Лет до пенсии</label>
+          <input type="number" id="years" value="20" min="1" max="50">
+        </div>
+        <div class="calc-field">
+          <label>Доходность портфеля (% / год)</label>
+          <input type="number" id="rate" value="10.6" min="0.1" max="200" step="0.1">
+        </div>
+        <div class="calc-field">
+          <label>Стартовый капитал ($)</label>
+          <input type="number" id="initial" value="5000" min="0" step="500">
+        </div>
+      </div>
+      <div class="calc-result">
+        <div class="calc-metric">
+          <div class="calc-metric-label">Ежемесячный взнос</div>
+          <div class="calc-metric-value accent" id="monthly">—</div>
+        </div>
+        <div class="calc-metric">
+          <div class="calc-metric-label">Всего вложено</div>
+          <div class="calc-metric-value" id="invested">—</div>
+        </div>
+        <div class="calc-metric">
+          <div class="calc-metric-label">Прирост (сложный %)</div>
+          <div class="calc-metric-value" id="growth">—</div>
+        </div>
+      </div>
+      <div class="calc-hint" id="hint"></div>
+    </div>
+
+    <ul class="steps" style="margin-top:12px;">
+      <li class="step">
+        <span class="step-dot"></span>
+        <span>Внесите целевой пенсионный капитал из блока 03 задания 1 и взвешенную ставку из задания 2</span>
+      </li>
+      <li class="step">
+        <span class="step-dot"></span>
+        <span>Сравните ежемесячный взнос с вашими текущими накоплениями из блока 01 — реалистично ли это при вашем бюджете?</span>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer-cta">
+    <span class="footer-cta-icon">💬</span>
+    <span>Поделитесь своим портфелем и расчётом в канале <strong>@Taras_Nadolniy</strong> — разберём интересные кейсы на следующей встрече</span>
+  </div>
+  <div class="footer-meta">
+    <span>@Taras_Nadolniy · Growing × moon+</span>
+    <span>Нет правильных ответов — есть осознанные</span>
+  </div>
+
+</div>
+
+<script>
+function fmt(n) {
+  if (n >= 1000000) return '$' + (n/1000000).toFixed(1) + 'M';
+  if (n >= 1000) return '$' + Math.round(n).toLocaleString('ru-RU');
+  return '$' + Math.round(n);
+}
+
+function calc() {
+  const target  = parseFloat(document.getElementById('target').value)  || 0;
+  const years   = parseFloat(document.getElementById('years').value)   || 1;
+  const rate    = parseFloat(document.getElementById('rate').value)    || 0.1;
+  const initial = parseFloat(document.getElementById('initial').value) || 0;
+
+  const r = rate / 100 / 12;
+  const n = Math.round(years * 12);
+  const fvInitial = initial * Math.pow(1 + r, n);
+  const remaining = target - fvInitial;
+
+  let monthly = 0;
+  if (remaining > 0 && r > 0) {
+    monthly = remaining * r / (Math.pow(1 + r, n) - 1);
+  } else if (remaining > 0) {
+    monthly = remaining / n;
+  }
+
+  const totalInvested = initial + monthly * n;
+  const growth = target - totalInvested;
+  const mult = totalInvested > 0 ? (target / totalInvested).toFixed(1) : '—';
+
+  document.getElementById('monthly').textContent  = monthly <= 0.5 ? '$0 ✓' : fmt(monthly) + '/мес';
+  document.getElementById('invested').textContent = fmt(totalInvested);
+  document.getElementById('growth').textContent   = growth > 0 ? '+' + fmt(growth) : fmt(growth);
+
+  let hint = '';
+  if (monthly <= 0.5) {
+    hint = 'Ваш стартовый капитал уже достаточен — при выбранной ставке он сам достигнет целевого значения без дополнительных взносов.';
+  } else {
+    hint = 'Сложный процент работает: вы вложите ' + fmt(totalInvested) + ', а получите ' + fmt(target) + ' — коэффициент роста ×' + mult + '. Это и есть «8-е чудо света» по Эйнштейну.';
+  }
+  document.getElementById('hint').textContent = hint;
+}
+
+['target','years','rate','initial'].forEach(id => {
+  document.getElementById(id).addEventListener('input', calc);
+});
+calc();
+</script>
+</body>
+</html>
